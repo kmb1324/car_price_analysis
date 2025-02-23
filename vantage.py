@@ -37,6 +37,10 @@ if __name__ == "__main__":
     )
 
     # prediction
+    df_cb = pd.DataFrame.from_dict({'miles': [44300], 'packages': ['manual']})
+    y_cb = predict_y(df_cb, features, model, categorical_columns=categorical_columns, encoder=encoder)
+    adjusted_y_cb = y_cb - y_cb * 0.05 - 1200
+    print('Predicted Price of Cars and Bids Car: ${:,.2f}'.format(adjusted_y_cb[0,0]))
     milage_new = np.linspace(10000, 90000, 200)
     dd_manual = {"miles": milage_new, "packages": ["manual"] * len(milage_new)}
     dd_automatic = {"miles": milage_new, "packages": ["automatic"] * len(milage_new)}
